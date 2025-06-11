@@ -1,12 +1,17 @@
 const express = require('express');
+const bodyParser = require('body-parser');
+
+const userRoutes = require('./routes/userRoutes');
+const productRoutes = require('./routes/productRoutes');
+
 const app = express();
+app.use(bodyParser.json());
 
-app.set('view engine', 'ejs');
+// Routes
+app.use('/api/users', userRoutes);
+app.use('/api/products', productRoutes);
 
-
-app.get('/', (req, res) => {
-    console.log('Received a request');
-  res.render('index');
+// Start server
+app.listen(3000, () => {
+  console.log('Server running on http://localhost:3000');
 });
-
-app.listen(3000);
