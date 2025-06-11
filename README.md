@@ -44,6 +44,8 @@ cd Backend-Developer-assignment
 
 ```bash
 npm install
+npm install mongoose dotenv cors
+npm install express body-parser
 ```
 
 ### 3. Set up environment variables
