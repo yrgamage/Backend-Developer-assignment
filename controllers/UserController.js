@@ -2,9 +2,13 @@ const User = require('../models/UserModel');
 
 exports.registerUser = async (req, res) => {
   const { email, password } = req.body;
-  // Simple email format check
+  // Email format check
   if (!/^\S+@\S+\.\S+$/.test(email)) {
     return res.status(400).json({ error: "Invalid email format" });
+  }
+  // Password validation: min 8 chars, at least one letter and one number
+  if (!/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/.test(password)) {
+    return res.status(400).json({ error: "Invalid password. Must be at least 8 characters, include at least one letter and one number." });
   }
   try {
     const user = new User({ email, password });
